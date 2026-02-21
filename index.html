@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dialogue JSON Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="crt-overlay"></div>
+  <div class="container">
+    <header>
+      <h1>Dialogue JSON Generator</h1>
+      <p class="subtitle">Build dialogue scripts for your game</p>
+    </header>
+
+    <section class="add-entry">
+      <h2>Add Entry</h2>
+      <div class="entry-form">
+        <div class="field">
+          <label for="entry-type">Entry Type</label>
+          <select id="entry-type">
+            <option value="dialogue">Dialogue</option>
+            <option value="pause">Pause</option>
+            <option value="signal">Signal</option>
+          </select>
+        </div>
+
+        <div id="dialogue-fields" class="type-fields">
+          <div class="field mode-checkboxes">
+            <label class="checkbox-label">
+              <input type="checkbox" id="is-normal" class="mode-checkbox">
+              <span>Normal</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="is-announcement" class="mode-checkbox">
+              <span>Announcement</span>
+            </label>
+          </div>
+          <div class="field speaker-field">
+            <label>Speaker</label>
+            <div class="speaker-btns">
+              <button type="button" class="speaker-btn active" data-speaker="player">Player</button>
+              <button type="button" class="speaker-btn" data-speaker="ai">AI</button>
+              <button type="button" class="speaker-btn" data-speaker="custom">Custom</button>
+            </div>
+            <input type="text" id="custom-speaker" class="custom-speaker-input hidden" placeholder="Enter speaker name">
+          </div>
+          <div class="field">
+            <label for="dialogue-text">Text</label>
+            <textarea id="dialogue-text" rows="3" placeholder="Enter dialogue text..."></textarea>
+            <div class="format-btns">
+              <button type="button" class="format-btn" data-wrap="b">Bold</button>
+              <button type="button" class="format-btn" data-wrap="i">Italic</button>
+              <button type="button" class="format-btn" data-wrap="purple">Purple</button>
+              <button type="button" class="format-btn" data-wrap="color=red">Red</button>
+              <button type="button" class="format-btn" data-wrap="color=orange">Orange</button>
+              <button type="button" class="format-btn" data-wrap="color=purple">Color Purple</button>
+              <button type="button" class="format-btn" data-wrap="inv">Inventory</button>
+              <button type="button" class="format-btn" data-wrap="icon">Icon</button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="shake">Shake (optional)</label>
+            <input type="number" id="shake" min="0" placeholder="0" value="">
+          </div>
+        </div>
+
+        <div id="pause-fields" class="type-fields hidden">
+          <div class="field">
+            <label for="pause-duration">Duration (seconds)</label>
+            <input type="number" id="pause-duration" min="1" value="1">
+          </div>
+        </div>
+
+        <div id="signal-fields" class="type-fields hidden">
+          <div class="field">
+            <label for="signal-name">Signal Name</label>
+            <input type="text" id="signal-name" placeholder="e.g. ai_climb_tree">
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-add" id="add-entry-btn">Add Entry</button>
+      </div>
+    </section>
+
+    <section class="entries-list">
+      <h2>Entries <span id="entry-count">(0)</span></h2>
+      <div id="entries-container"></div>
+      <p id="empty-message" class="empty-msg">No entries yet. Add some above!</p>
+    </section>
+
+    <section class="output">
+      <h2>Output</h2>
+      <div class="output-actions">
+        <div class="field inline">
+          <label for="filename">Filename</label>
+          <input type="text" id="filename" placeholder="dialogue.json" value="dialogue.json">
+        </div>
+        <button type="button" class="btn btn-download" id="download-btn">Download JSON</button>
+      </div>
+      <pre id="json-preview"></pre>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
